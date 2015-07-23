@@ -27,6 +27,11 @@ namespace ServiceForMinibuses.Web.Common.IoC
                  .For<RouteController>()
                  .ImplementedBy<RouteController>()
                  .LifeStyle.Transient);
+
+             container.Register(Castle.MicroKernel.Registration.Component
+                 .For<StopController>()
+                 .ImplementedBy<StopController>()
+                 .LifeStyle.Transient);
              
         }
           

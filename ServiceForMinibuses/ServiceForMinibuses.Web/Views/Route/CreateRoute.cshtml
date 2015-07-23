@@ -1,9 +1,9 @@
 ﻿@model ServiceForMinibuses.Web.Models.CreateRouteViewModel
 @{
-    ViewBag.Title = "Create New Route";
+    ViewBag.Title = "Create new route";
 }
 
-<h2>Create Route</h2>
+<h2>Create route</h2>
     <form action="@Url.Action("CreateRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
     @Html.AntiForgeryToken()
     <div class="form-group">
