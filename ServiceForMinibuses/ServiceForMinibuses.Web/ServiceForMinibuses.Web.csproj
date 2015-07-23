@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -158,6 +164,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="CastleWindsorControllerFactory.cs" />
+    <Compile Include="Common\IoC\ControllerInstaller.cs" />
+    <Compile Include="Common\IoC\PersistenceInstaller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -244,6 +253,14 @@
     <ProjectReference Include="..\ServerForMinibuses.Models\ServerForMinibuses.Models.csproj">
       <Project>{67ec2de5-0994-4e3a-b685-0e3423a8bc47}</Project>
       <Name>ServerForMinibuses.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceForMinibuses.Manager.EntityFramework\ServiceForMinibuses.Manager.EntityFramework.csproj">
+      <Project>{7851a005-25ee-4bd5-abeb-0f6a33735bf3}</Project>
+      <Name>ServiceForMinibuses.Manager.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceForMinibuses.Manager\ServiceForMinibuses.Manager.csproj">
+      <Project>{afee9ffa-a4bf-481f-8443-7f538b178e4d}</Project>
+      <Name>ServiceForMinibuses.Manager</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

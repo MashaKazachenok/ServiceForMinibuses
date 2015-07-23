@@ -1,10 +1,11 @@
 ﻿
+
 using Models;
 
 namespace ServiceForMinibuses.Manager
 {
-    public interface IRouteManager
+    public interface IStopStore
     {
-        Route GetRouteById(int id);
+        Stop GetStopById(int id);
     }
 }

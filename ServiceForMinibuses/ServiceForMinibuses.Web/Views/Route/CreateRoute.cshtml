@@ -4,11 +4,6 @@
 }
 
 <h2>Create Route</h2>
-
-
-
-
-
     <form action="@Url.Action("CreateRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
         @Html.AntiForgeryToken()
         <div class="form-group">
@@ -25,8 +20,6 @@
             </div>
         </div>
     </form>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

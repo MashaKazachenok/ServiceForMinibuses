@@ -1,13 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using ServiceForMinibuses.Manager;
 
 namespace ServiceForMinibuses.Web.Controllers
 {
     public class RouteController : Controller
     {
+        private readonly IStopStore _stopStore;
+        private readonly IRouteStore _routeStore;
+
+        public RouteController(
+            IRouteStore routeStore,
+            IStopStore stopStore)
+        {
+            _stopStore = stopStore;
+            _routeStore = routeStore;
+
+        }
+
         // GET: Route
         public ActionResult CreateRoute()
         {

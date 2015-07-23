@@ -4,7 +4,7 @@ using Models;
 
 namespace ServiceForMinibuses.Manager.EntityFramework
 {
-    public class EntityFrameworkRouteManager : IRouteManager
+    public class RouteStore : IRouteStore
     {
         public Route GetRouteById(int id)
         {

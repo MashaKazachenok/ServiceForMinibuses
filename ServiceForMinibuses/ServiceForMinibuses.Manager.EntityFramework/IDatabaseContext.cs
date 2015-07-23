@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ServiceForMinibuses.Manager.EntityFramework
+﻿namespace ServiceForMinibuses.Manager.EntityFramework
 {
     interface IDatabaseContext
     {
