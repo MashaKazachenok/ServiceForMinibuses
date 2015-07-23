@@ -16,6 +16,7 @@ namespace ServiceForMinibuses.Web
                 .Install(new ControllerInstaller())
                 .Install(new PersistenceInstaller());
 
+            ControllerBuilder.Current.SetControllerFactory(typeof(CastleWindsorControllerFactory));
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
