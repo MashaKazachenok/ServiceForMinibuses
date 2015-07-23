@@ -1,13 +1,24 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home page";
 }
 
 
 
 <div class="row">
-    <a href="@Url.Action("CreateRoute", "Route")">Create route </a>
+    <a class="text-size"  href="@Url.Action("CreateRoute", "Route")"><span class="glyphicon glyphicon-plus"></span>Create route </a>
 </div>
 
 <div class="row">
-    <a type="button" href="@Url.Action("CreateStop", "Stop")">Create stop</a>
+    <a class="text-size" href="@Url.Action("CreateStop", "Stop")"><span class="glyphicon glyphicon-plus"></span>Create stop</a>
 </div>
+
+
+@section styles {
+    <link rel="stylesheet" href="/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/kendoui/styles/kendo.default.min.css" />
+    <style>
+        .text-size{
+            font-size: 20px;
+        }
+    </style>
+    }

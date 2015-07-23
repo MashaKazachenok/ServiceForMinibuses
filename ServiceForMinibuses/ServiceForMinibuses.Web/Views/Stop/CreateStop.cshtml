@@ -1,7 +1,42 @@
-﻿
+﻿@model ServiceForMinibuses.Web.Models.CreateStopViewModel
 @{
-    ViewBag.Title = "CreateStop";
+    ViewBag.Title = "Create stop";
 }
 
-<h2>CreateStop</h2>
+<h2>Create stop</h2>
+<form action="@Url.Action("CreateRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+        <div>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="demo-section k-content">
+        <div class="textBox">
+            <label for="currency">X coordinate:</label>
+            <input type="number" value="30" min="0" max="60" style="width: 100%;" />
+        </div>
+        <div class="textBox">
+            <label for="currency">Y coordinate:</label>
+            <input type="number" value="30" min="0" max="60" style="width: 100%;" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="buttonsubmit">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</form>
 
+    @section Scripts {
+        <script src="/kendoui/js/jquery.min.js"></script>
+        <script src="/kendoui/js/kendo.all.min.js"></script>
+
+    }
+
+    @section styles {
+        <link rel="stylesheet" href="/kendoui/styles/kendo.common.min.css" />
+        <link rel="stylesheet" href="/kendoui/styles/kendo.default.min.css" />
+    }

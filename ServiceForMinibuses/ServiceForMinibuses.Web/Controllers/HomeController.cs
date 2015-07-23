@@ -6,11 +6,13 @@ namespace ServiceForMinibuses.Web.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.ActiveMenuItem = "home";
             return View();
         }
 
         public ActionResult About()
         {
+            ViewBag.ActiveMenuItem = "about";
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -18,6 +20,7 @@ namespace ServiceForMinibuses.Web.Controllers
 
         public ActionResult Contact()
         {
+            ViewBag.ActiveMenuItem = "contact";
             ViewBag.Message = "Your contact page.";
 
             return View();
