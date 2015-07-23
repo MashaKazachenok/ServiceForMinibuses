@@ -5,23 +5,71 @@
 
 <h2>Create Route</h2>
     <form action="@Url.Action("CreateRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
-            <div>
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-            </div>
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+        <div>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
         </div>
-   
-        <div class="form-group">
-            <div>
-                <input type="submit" value="Create" class="btn btn-success" />
-            </div>
+    </div>
+
+
+    <div id="example" role="application">
+        <div class="demo-section k-header select-form">
+
+            <label for="optional">Stops</label>
+            <select id="optional" multiple="multiple" data-placeholder="Select stop...">
+                <option>First</option>
+                <option>Lesnaya</option>
+                <option>Magazin</option>
+                <option>Lecnaya</option>
+                <option>Learning</option>
+            </select>
         </div>
-    </form>
+    </div>
+    <div class="form-group">
+        <div class="buttonsubmit">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="/kendoui/js/jquery.min.js"></script>
+    <script src="/kendoui/js/kendo.all.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // create MultiSelect from select HTML element
+        var optional = $("#optional").kendoMultiSelect({
+            autoClose: false
+        }).data("kendoMultiSelect");
+
+    });
+</script>
+
 }
 
+@section styles {
+    <link rel="stylesheet" href="/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/kendoui/styles/kendo.default.min.css" />
+<style>
+    .select-form {
+        margin-left: -17px;
+        width: 50%;
+    }
+
+    .demo-section label {
+        display: block;
+        margin: 15px 0 5px 0;
+    }
+    .buttonsubmit {
+        margin: 15px 20px 5px 0;
+    }
+
+   
+</style>
+
+    }
