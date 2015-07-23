@@ -45,11 +45,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ServerForMinibuses.Models\ServerForMinibuses.Models.csproj">
+    <ProjectReference Include="..\ServerForMinibuses.Models\ServerForMinibuses.Models.csproj">
       <Project>{67ec2de5-0994-4e3a-b685-0e3423a8bc47}</Project>
       <Name>ServerForMinibuses.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ServiceForMinibuses.Manager\ServiceForMinibuses.Manager.csproj">
+    <ProjectReference Include="..\ServiceForMinibuses.Manager\ServiceForMinibuses.Manager.csproj">
       <Project>{afee9ffa-a4bf-481f-8443-7f538b178e4d}</Project>
       <Name>ServiceForMinibuses.Manager</Name>
     </ProjectReference>
