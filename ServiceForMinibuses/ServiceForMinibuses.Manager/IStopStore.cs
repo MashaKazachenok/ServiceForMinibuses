@@ -10,6 +10,6 @@ namespace ServiceForMinibuses.Manager
         Stop GetStopById(int id);
         void AddStop(Stop stop);
         List<Route> GetStopsByRoutId(int routeId);
-       
+        List<Stop> GetStops();
     }
 }

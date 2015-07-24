@@ -10,11 +10,13 @@ namespace ServiceForMinibuses.Web.Controllers
     public class RouteController : Controller
     {
         private readonly IRouteStore _routeStore;
+        private readonly IStopStore _stopStore;
 
         public RouteController(
-            IRouteStore routeStore
+            IRouteStore routeStore,  IStopStore stopStore
           )
         {
+            _stopStore = stopStore;
             _routeStore = routeStore;
 
         }
@@ -22,7 +24,9 @@ namespace ServiceForMinibuses.Web.Controllers
         // GET: Route
         public ActionResult CreateRoute()
         {
-            return View();
+            var model = new CreateRouteViewModel();
+            model.Stops = _stopStore.GetStops();
+            return View(model);
         }
 
         public ActionResult ViewRoutes()

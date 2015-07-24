@@ -28,5 +28,11 @@ namespace ServiceForMinibuses.Manager.EntityFramework
         {
             throw new System.NotImplementedException();
         }
+
+        public List<Stop> GetStops()
+        {
+            return _databaseContext.Stops
+                .ToList();
+        }
     }
 }

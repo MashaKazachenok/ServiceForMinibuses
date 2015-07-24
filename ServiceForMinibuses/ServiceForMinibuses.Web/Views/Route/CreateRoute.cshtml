@@ -20,11 +20,10 @@
 
             <label for="optional">Stops</label>
             <select id="optional" multiple="multiple" data-placeholder="Select stop...">
-                <option>First</option>
-                <option>Lesnaya</option>
-                <option>Magazin</option>
-                <option>Lecnaya</option>
-                <option>Learning</option>
+                @foreach (var stop in Model.Stops)
+                {
+                    <option>@stop.Name</option>
+                }
             </select>
         </div>
     </div>
