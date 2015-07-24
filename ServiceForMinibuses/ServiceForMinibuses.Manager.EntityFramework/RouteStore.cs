@@ -18,7 +18,7 @@ namespace ServiceForMinibuses.Manager.EntityFramework
             return _databaseContext.Routes.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Route> GetRoutes(int userId)
+        public List<Route> GetRoutes()
         {
             return _databaseContext.Routes
                 .ToList();

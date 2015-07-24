@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using AutoMapper;
 using ServiceForMinibuses.Manager;
 using ServiceForMinibuses.Web.Models;
+using Models;
 
 namespace ServiceForMinibuses.Web.Controllers
 {
@@ -20,6 +23,22 @@ namespace ServiceForMinibuses.Web.Controllers
         public ActionResult CreateRoute()
         {
             return View();
+        }
+
+        public ActionResult ViewRoutes()
+        {
+           
+            var routes = _routeStore.GetRoutes();
+
+            Mapper.CreateMap<Route, RouteListViewModel>();
+            var model = new RouteListViewModel
+            {
+                Routes = Mapper.Map<List<CreateRouteViewModel>>(routes)
+            };
+
+            return View(model);
+
+    
         }
 
         // GET: Route/Details/5

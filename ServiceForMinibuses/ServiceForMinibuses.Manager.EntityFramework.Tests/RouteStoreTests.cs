@@ -51,13 +51,7 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
         public void AddRoute()
         {
 
-            /* var routeDbSetMock = new List<Route>().AsQueryable(); 
-
             var mockSet = new Mock<DbSet<Route>>();
-            mockSet.As<IQueryable<Route>>().Setup(m => m.Provider).Returns(routeDbSetMock.Provider);
-            mockSet.As<IQueryable<Route>>().Setup(m => m.Expression).Returns(routeDbSetMock.Expression);
-            mockSet.As<IQueryable<Route>>().Setup(m => m.ElementType).Returns(routeDbSetMock.ElementType);
-            mockSet.As<IQueryable<Route>>().Setup(m => m.GetEnumerator()).Returns(routeDbSetMock.GetEnumerator()); 
 
             var databaseContextMock = new Mock<IDatabaseContext>();
             databaseContextMock.Setup(x => x.Routes)
@@ -76,12 +70,10 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
             };
             // Действие
             routeStore.AddRoute(route.Name, stops);
-        
 
             // Утверждение
-         mockSet.Verify(x => x.Add(route));  
-       
-        */
+            mockSet.Verify(x => x.Add(It.IsAny<Route>()));
+            databaseContextMock.Verify(x => x.Save());
         }
     }
 }

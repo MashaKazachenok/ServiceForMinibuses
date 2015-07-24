@@ -58,6 +58,13 @@ namespace ServiceForMinibuses.Web.Controllers
             }
         }
 
+        public ActionResult ViewStops()
+        {
+            var model = new RouteListViewModel();
+          
+
+            return View("ViewStops", model);
+        }
         //
         // GET: /Stop/Edit/5
         public ActionResult Edit(int id)
@@ -104,6 +111,8 @@ namespace ServiceForMinibuses.Web.Controllers
             {
                 return View();
             }
+
+
         }
     }
 }
