@@ -12,6 +12,13 @@ namespace ServiceForMinibuses.Web.Common.IoC
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(Component
+                .For<IDatabaseContext>()
+                .ImplementedBy<DatabaseContext>()
+                .DependsOn(Dependency.OnValue("nameOrConnectionString", "DefaultConnection"))
+                .LifeStyle.PerWebRequest
+            );
+
+            container.Register(Component
                .For<IStopStore>()
                .ImplementedBy<StopStore>()
                .LifeStyle.Transient

@@ -10,5 +10,6 @@ namespace ServiceForMinibuses.Manager.EntityFramework
        DbSet<Route> Routes { get; set; }
 
            DbSet<TEntity> Set<TEntity>() where TEntity : class;
+           void Save();
     }
 }

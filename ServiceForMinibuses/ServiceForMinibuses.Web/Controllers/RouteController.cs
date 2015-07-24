@@ -1,19 +1,17 @@
 ﻿using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using ServiceForMinibuses.Manager;
+using ServiceForMinibuses.Web.Models;
 
 namespace ServiceForMinibuses.Web.Controllers
 {
     public class RouteController : Controller
     {
-        private readonly IStopStore _stopStore;
         private readonly IRouteStore _routeStore;
 
         public RouteController(
-            IRouteStore routeStore,
-            IStopStore stopStore)
+            IRouteStore routeStore
+          )
         {
-            _stopStore = stopStore;
             _routeStore = routeStore;
 
         }
@@ -38,19 +36,19 @@ namespace ServiceForMinibuses.Web.Controllers
 
         // POST: Route/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateRoute(CreateRouteViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+              //  _routeStore.AddRoute(model.Name);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateRoute");
             }
             catch
             {
                 return View();
             }
-        }
+        } 
 
         // GET: Route/Edit/5
         public ActionResult Edit(int id)

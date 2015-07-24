@@ -4,7 +4,7 @@
 }
 
 <h2>Create stop</h2>
-<form action="@Url.Action("CreateRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
+<form action="@Url.Action("CreateStop", "Stop")" enctype="multipart/form-data" method="POST" class="form-horizontal">
     @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "control-label" })

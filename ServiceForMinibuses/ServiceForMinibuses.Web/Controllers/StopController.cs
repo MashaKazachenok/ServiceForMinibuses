@@ -1,9 +1,7 @@
 ﻿using ServiceForMinibuses.Manager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Models;
+using ServiceForMinibuses.Web.Models;
 
 namespace ServiceForMinibuses.Web.Controllers
 {
@@ -41,13 +39,18 @@ namespace ServiceForMinibuses.Web.Controllers
         //
         // POST: /Stop/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateStop(CreateStopViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                var stop = new Stop();
+                stop.Name = model.Name;
+                stop.XCoord = model.XCoord;
+                stop.YCoord = model.YCoord;
 
-                return RedirectToAction("Index");
+                _stopStore.AddStop(stop);
+
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

@@ -20,6 +20,11 @@ namespace ServiceForMinibuses.Manager.EntityFramework
             return base.Set<TEntity>();
         }
 
+        public void Save()
+        {
+            SaveChanges();
+        }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

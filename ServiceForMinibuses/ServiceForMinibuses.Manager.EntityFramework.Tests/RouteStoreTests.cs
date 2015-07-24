@@ -16,26 +16,21 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
         public void GetById_Found()
         {
             // Подготовка
-         /*   var routeDbSetMock = new Mock<DbSet<Route>>();
-            routeDbSetMock.Setup(x => x.Find(1))
-                .Returns(new Route
+            var routeDbSetMock = new List<Route>
+            {
+                new Route
                 {
                     Name = "Gomel-Minsk",
                     Id = 1
-                });
-            */
-            var routeDbSetMock = new List<Route> 
-            { 
-                new Route { Name = "Gomel-Minsk",
-                    Id = 1}, 
-           
-            }.AsQueryable(); 
+                },
+
+            }.AsQueryable();
 
             var mockSet = new Mock<DbSet<Route>>();
             mockSet.As<IQueryable<Route>>().Setup(m => m.Provider).Returns(routeDbSetMock.Provider);
             mockSet.As<IQueryable<Route>>().Setup(m => m.Expression).Returns(routeDbSetMock.Expression);
             mockSet.As<IQueryable<Route>>().Setup(m => m.ElementType).Returns(routeDbSetMock.ElementType);
-            mockSet.As<IQueryable<Route>>().Setup(m => m.GetEnumerator()).Returns(routeDbSetMock.GetEnumerator()); 
+            mockSet.As<IQueryable<Route>>().Setup(m => m.GetEnumerator()).Returns(routeDbSetMock.GetEnumerator());
 
             var databaseContextMock = new Mock<IDatabaseContext>();
             databaseContextMock.Setup(x => x.Routes)
@@ -50,6 +45,43 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
             Assert.IsNotNull(route);
             Assert.AreEqual(1, route.Id);
             Assert.AreEqual("Gomel-Minsk", route.Name);
+        }
+
+        [Test]
+        public void AddRoute()
+        {
+
+            /* var routeDbSetMock = new List<Route>().AsQueryable(); 
+
+            var mockSet = new Mock<DbSet<Route>>();
+            mockSet.As<IQueryable<Route>>().Setup(m => m.Provider).Returns(routeDbSetMock.Provider);
+            mockSet.As<IQueryable<Route>>().Setup(m => m.Expression).Returns(routeDbSetMock.Expression);
+            mockSet.As<IQueryable<Route>>().Setup(m => m.ElementType).Returns(routeDbSetMock.ElementType);
+            mockSet.As<IQueryable<Route>>().Setup(m => m.GetEnumerator()).Returns(routeDbSetMock.GetEnumerator()); 
+
+            var databaseContextMock = new Mock<IDatabaseContext>();
+            databaseContextMock.Setup(x => x.Routes)
+                .Returns(mockSet.Object);
+            var routeStore = new RouteStore(databaseContextMock.Object);
+
+            var route = new Route
+            {
+                Name = "First"
+            };
+            var stops = new List<Stop>
+            {
+                new Stop {Name = "1"},
+                new Stop {Name = "2"},
+                new Stop {Name = "3"}
+            };
+            // Действие
+            routeStore.AddRoute(route.Name, stops);
+        
+
+            // Утверждение
+         mockSet.Verify(x => x.Add(route));  
+       
+        */
         }
     }
 }

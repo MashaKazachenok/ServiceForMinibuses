@@ -1,5 +1,6 @@
 ﻿
 
+using System.Collections.Generic;
 using Models;
 
 namespace ServiceForMinibuses.Manager
@@ -7,5 +8,8 @@ namespace ServiceForMinibuses.Manager
     public interface IStopStore
     {
         Stop GetStopById(int id);
+        void AddStop(Stop stop);
+        List<Route> GetStopsByRoutId(int routeId);
+       
     }
 }
