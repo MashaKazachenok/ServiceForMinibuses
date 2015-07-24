@@ -1,6 +1,14 @@
-﻿namespace ServiceForMinibuses.Manager.EntityFramework
+﻿using System.Data.Entity;
+using Models;
+
+namespace ServiceForMinibuses.Manager.EntityFramework
 {
-    interface IDatabaseContext
+    public interface IDatabaseContext
     {
+        DbSet<Stop> Stops { get; set; }
+
+       DbSet<Route> Routes { get; set; }
+
+           DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }
