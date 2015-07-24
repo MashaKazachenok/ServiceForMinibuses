@@ -15,7 +15,7 @@ namespace ServiceForMinibuses.Manager.EntityFramework
         }
         public Stop GetStopById(int id)
         {
-            throw new System.NotImplementedException();
+            return _databaseContext.Stops.FirstOrDefault(x => x.Id == id);
         }
 
         public void AddStop(Stop stop)
