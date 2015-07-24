@@ -30,7 +30,7 @@ namespace ServiceForMinibuses.Web.Controllers
            
             var routes = _routeStore.GetRoutes();
 
-            Mapper.CreateMap<Route, RouteListViewModel>();
+            Mapper.CreateMap<Route, CreateRouteViewModel>();
             var model = new RouteListViewModel
             {
                 Routes = Mapper.Map<List<CreateRouteViewModel>>(routes)
@@ -59,9 +59,12 @@ namespace ServiceForMinibuses.Web.Controllers
         {
             try
             {
-              //  _routeStore.AddRoute(model.Name);
+                var route = new Route();
+                route.Name = model.Name;
 
-                return RedirectToAction("CreateRoute");
+                _routeStore.AddRoute(route);
+
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

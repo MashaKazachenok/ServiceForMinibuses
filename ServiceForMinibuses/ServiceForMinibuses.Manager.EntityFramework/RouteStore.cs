@@ -24,13 +24,9 @@ namespace ServiceForMinibuses.Manager.EntityFramework
                 .ToList();
         }
 
-        public void AddRoute(string routeName, List<Stop> stops )
+        public void AddRoute(Route route)
         {
-            _databaseContext.Routes.Add(new Route()
-            {
-                Name = routeName,
-                Stops = stops
-            });
+            _databaseContext.Routes.Add(route);
             _databaseContext.Save();
         }
     }

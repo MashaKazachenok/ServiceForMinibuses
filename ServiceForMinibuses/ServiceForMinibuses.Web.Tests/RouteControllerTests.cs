@@ -14,9 +14,9 @@ namespace ServiceForMinibuses.Web.Tests
           {
 
               var routeStoreMock = new Mock<IRouteStore>();
-              var stopOfWorkMock = new Mock<IStopStore>();
+       
 
-              var controller = new RouteController(routeStoreMock.Object, stopOfWorkMock.Object);
+              var controller = new RouteController(routeStoreMock.Object);
 
               var actionResult = controller.CreateRoute();
 

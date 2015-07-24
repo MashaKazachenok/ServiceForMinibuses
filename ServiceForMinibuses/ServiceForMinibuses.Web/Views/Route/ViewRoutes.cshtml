@@ -4,8 +4,24 @@
 }
 
 <h2>All routes</h2>
+<div class="row">
+    <a class="text-size" href="@Url.Action("CreateRoute", "Route")"><span class="glyphicon glyphicon-plus"></span>Add route </a>
+</div>
 
-@foreach (var route in Model.Routes)
-{
-    <div> @route</div>
-}
+<div class="table table-striped">
+    <table class="table table-bordered">
+        
+        <tr>
+            <th>Name</th>
+           
+        </tr>
+       @foreach (var route in Model.Routes)
+       {
+            <tr>
+                <td>
+                    @route.Name
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -69,7 +69,7 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
                 new Stop {Name = "3"}
             };
             // Действие
-            routeStore.AddRoute(route.Name, stops);
+            routeStore.AddRoute(route);
 
             // Утверждение
             mockSet.Verify(x => x.Add(It.IsAny<Route>()));

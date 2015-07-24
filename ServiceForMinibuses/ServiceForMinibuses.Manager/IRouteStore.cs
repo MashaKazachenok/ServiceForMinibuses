@@ -7,7 +7,7 @@ namespace ServiceForMinibuses.Manager
     {
         Route GetRouteById(int id);
         List<Route> GetRoutes();
-        void AddRoute(string routeName, List<Stop> stops);
+        void AddRoute(Route route);
        
 
     }
