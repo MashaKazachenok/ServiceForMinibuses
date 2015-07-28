@@ -13,6 +13,7 @@
         
         <tr>
             <th>Name</th>
+            <th>Stops</th>
            
         </tr>
        @foreach (var route in Model.Routes)
@@ -20,6 +21,12 @@
             <tr>
                 <td>
                     @route.Name
+                </td>
+                <td>
+                    @foreach (var stop in route.Stops)
+                    {
+                        @stop.Name
+                    }
                 </td>
             </tr>
         }

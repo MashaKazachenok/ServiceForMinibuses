@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Models;
 
 namespace ServiceForMinibuses.Manager.EntityFramework
@@ -21,6 +22,7 @@ namespace ServiceForMinibuses.Manager.EntityFramework
         public List<Route> GetRoutes()
         {
             return _databaseContext.Routes
+                .Include("Stops")
                 .ToList();
         }
 

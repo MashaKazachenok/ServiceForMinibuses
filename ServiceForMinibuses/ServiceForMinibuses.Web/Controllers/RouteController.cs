@@ -59,15 +59,28 @@ namespace ServiceForMinibuses.Web.Controllers
 
         // POST: Route/Create
         [HttpPost]
-        public ActionResult CreateRoute(CreateRouteViewModel model)
+        public ActionResult CreateRoute(CreateRouteViewModel model, List<string> stops)
         {
             try
             {
                 var route = new Route();
                 route.Name = model.Name;
+                route.Stops = new List<Stop>();
+
+                if (stops != null)
+                {
+                    foreach (var stop in stops)
+                    {
+                        var modelStop = new Stop();
+                        modelStop.Name = stop;
+                        route.Stops.Add(modelStop);
+                    }
+                }
+
+
 
                 _routeStore.AddRoute(route);
-
+                
                 return RedirectToAction("Index", "Home");
             }
             catch

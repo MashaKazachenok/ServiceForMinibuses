@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
         <div class="buttonsubmit">
-            <input type="submit" value="Create" class="btn btn-success" />
+            <input id="task" type="submit" value="Create" class="btn btn-success" />
         </div>
     </div>
 </form>
@@ -39,15 +39,39 @@
 
     <script src="/kendoui/js/jquery.min.js"></script>
     <script src="/kendoui/js/kendo.all.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // create MultiSelect from select HTML element
-        var optional = $("#optional").kendoMultiSelect({
-            autoClose: false
-        }).data("kendoMultiSelect");
 
-    });
-</script>
+    <script>
+        var createRouteUrl = "@Url.Action("CreateRoute", "Route")";
+
+        $(document).ready(function() {
+            // create MultiSelect from select HTML element
+            var optional = $("#optional").kendoMultiSelect({
+                autoClose: false
+            }).data("kendoMultiSelect");
+
+         //   $('#task').on('click', addRoute);
+        });
+
+        $("#task").click(function () {
+            addRoute();
+        });
+
+        function addRoute() {
+         
+            var stops = $('#optional').val();
+            console.log(stops);
+                $.ajax({
+                    type: "POST",
+                    url: createRouteUrl,
+                    data: {
+                        stops: stops
+            },
+                    success: function () {
+                        
+                    }
+                });
+            }
+    </script>
 
 }
 
