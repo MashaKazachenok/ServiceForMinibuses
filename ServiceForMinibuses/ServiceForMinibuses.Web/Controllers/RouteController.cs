@@ -71,9 +71,11 @@ namespace ServiceForMinibuses.Web.Controllers
                 {
                     foreach (var stop in stops)
                     {
-                        var modelStop = new Stop();
-                        modelStop.Name = stop;
-                        route.Stops.Add(modelStop);
+                        var findStop = _stopStore.GetStopByName(stop);
+                      
+                        route.Stops.Add(findStop);
+                        findStop.Routes.Add(route);
+                        _stopStore.UpdateStop(findStop);
                     }
                 }
 

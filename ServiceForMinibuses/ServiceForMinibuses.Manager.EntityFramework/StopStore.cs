@@ -34,5 +34,21 @@ namespace ServiceForMinibuses.Manager.EntityFramework
             return _databaseContext.Stops
                 .ToList();
         }
+
+        public Stop GetStopByName(string stopName)
+        {
+            return _databaseContext.Stops.FirstOrDefault(x => x.Name == stopName);
+        }
+
+        public void UpdateStop(Stop findStop)
+        {
+            Stop stop = GetStopByName(findStop.Name);
+
+            if (stop != null)
+            {
+                stop.Routes = findStop.Routes;
+            }
+            _databaseContext.Save();
+        }
     }
 }
