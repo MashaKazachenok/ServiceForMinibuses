@@ -24,5 +24,12 @@ namespace ServiceForMinibuses.Web.Tests
               Assert.IsNotNull(actionResult);
           }
 
+            [Test]
+            public void DeleteRoute()
+            {
+
+               
+            }
+
     }
 }
