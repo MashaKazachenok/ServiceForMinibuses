@@ -41,7 +41,8 @@ namespace ServiceForMinibuses.Web.Controllers
         [HttpPost]
         public ActionResult CreateStop(CreateStopViewModel model)
         {
-            try
+           
+            if (ModelState.IsValid)
             {
                 var stop = new Stop();
                 stop.Name = model.Name;
@@ -52,10 +53,7 @@ namespace ServiceForMinibuses.Web.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-            catch
-            {
                 return View();
-            }
         }
 
         public ActionResult ViewStops()

@@ -31,6 +31,13 @@ namespace ServiceForMinibuses.Manager.EntityFramework
             _databaseContext.Routes.Add(route);
             _databaseContext.Save();
         }
+
+        public void RemoveRoute(int routeId)
+        {
+            var route = _databaseContext.Routes.FirstOrDefault(x => x.Id == routeId);
+            _databaseContext.Routes.Remove(route);
+            _databaseContext.Save();
+        }
     }
 }
 

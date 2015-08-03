@@ -61,11 +61,12 @@ namespace ServiceForMinibuses.Web.Controllers
         [HttpPost]
         public ActionResult CreateRoute(CreateRouteViewModel model, List<string> stops)
         {
-            try
+           
+            if (ModelState.IsValid)
             {
                 var route = new Route();
                 route.Name = model.Name;
-                route.Stops = new List<Stop>();
+               
 
                 if (stops != null)
                 {
@@ -79,16 +80,13 @@ namespace ServiceForMinibuses.Web.Controllers
                     }
                 }
 
-
-
                 _routeStore.AddRoute(route);
                 
                 return RedirectToAction("Index", "Home");
             }
-            catch
-            {
-                return View();
-            }
+           
+            model.Stops = _stopStore.GetStops();
+            return View(model);
         } 
 
         // GET: Route/Edit/5
@@ -113,26 +111,18 @@ namespace ServiceForMinibuses.Web.Controllers
             }
         }
 
-        // GET: Route/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Route/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+     
+      
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+
+        public ActionResult DeleteRoute(int routeId)
+        {
+            _routeStore.RemoveRoute(routeId);
+
+            return RedirectToAction("ViewRoutes");
         }
+
+     
     }
 }

@@ -8,5 +8,6 @@ namespace ServiceForMinibuses.Manager
         Route GetRouteById(int id);
         List<Route> GetRoutes();
         void AddRoute(Route route);
+        void RemoveRoute(int routeId);
     }
 }
