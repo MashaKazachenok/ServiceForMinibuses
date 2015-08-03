@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using Models;
 using Moq;
@@ -62,12 +63,7 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
             {
                 Name = "First"
             };
-            var stops = new List<Stop>
-            {
-                new Stop {Name = "1"},
-                new Stop {Name = "2"},
-                new Stop {Name = "3"}
-            };
+
             // Действие
             routeStore.AddRoute(route);
 
@@ -75,5 +71,42 @@ namespace ServiceForMinibuses.Manager.EntityFramework.Tests
             mockSet.Verify(x => x.Add(It.IsAny<Route>()));
             databaseContextMock.Verify(x => x.Save());
         }
+
+        [Test]
+        public void DeleteRoute()
+        {
+            var routeDbSetMock = new List<Route>
+            {
+                new Route
+                {
+                    Name = "Gomel-Minsk",
+                    Id = 3
+                },
+
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Route>>();
+            mockSet.As<IQueryable<Route>>().Setup(m => m.Provider).Returns(routeDbSetMock.Provider);
+            mockSet.As<IQueryable<Route>>().Setup(m => m.Expression).Returns(routeDbSetMock.Expression);
+            mockSet.As<IQueryable<Route>>().Setup(m => m.ElementType).Returns(routeDbSetMock.ElementType);
+            mockSet.As<IQueryable<Route>>().Setup(m => m.GetEnumerator()).Returns(routeDbSetMock.GetEnumerator());
+
+            var databaseContextMock = new Mock<IDatabaseContext>();
+            databaseContextMock.Setup(x => x.Routes)
+                .Returns(mockSet.Object);
+
+            var routeStore = new RouteStore(databaseContextMock.Object);
+
+            var routeId = 3;
+           
+            // Действие
+            routeStore.RemoveRoute(routeId);
+
+            // Утверждение
+            mockSet.Verify(x => x.Remove(It.IsAny<Route>()));
+            databaseContextMock.Verify(x => x.Save());
+        }
     }
 }
+
+
