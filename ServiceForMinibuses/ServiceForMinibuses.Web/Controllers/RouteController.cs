@@ -122,7 +122,5 @@ namespace ServiceForMinibuses.Web.Controllers
 
             return RedirectToAction("ViewRoutes");
         }
-
-     
     }
 }
