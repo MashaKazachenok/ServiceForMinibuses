@@ -59,14 +59,10 @@ namespace ServiceForMinibuses.Web.Controllers
 
         // POST: Route/Create
         [HttpPost]
-        public ActionResult CreateRoute(CreateRouteViewModel model, List<string> stops)
+        public ActionResult CreateRoute(CreateRouteViewModel model, List<string> stops, string name)
         {
-           
-            if (ModelState.IsValid)
-            {
                 var route = new Route();
-                route.Name = model.Name;
-               
+                route.Name = name;
 
                 if (stops != null)
                 {
@@ -82,11 +78,7 @@ namespace ServiceForMinibuses.Web.Controllers
 
                 _routeStore.AddRoute(route);
                 
-                return RedirectToAction("Index", "Home");
-            }
-           
-            model.Stops = _stopStore.GetStops();
-            return View(model);
+                return RedirectToAction("ViewRoutes", "Route");
         } 
 
         // GET: Route/Edit/5

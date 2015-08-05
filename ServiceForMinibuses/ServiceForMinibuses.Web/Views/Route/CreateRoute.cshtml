@@ -9,7 +9,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "control-label" })
         <div>
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "route-name" })
             @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
         <div class="buttonsubmit">
-            <input id="task" type="submit" value="Create" class="btn btn-success" />
+            <input id="task" type="" value="Create" class="btn btn-success" />
         </div>
     </div>
 </form>
@@ -55,16 +55,19 @@
         $("#task").click(function () {
             addRoute();
         });
-
+        
         function addRoute() {
          
             var stops = $('#optional').val();
+            var name = $('#route-name').val();
             console.log(stops);
+            console.log(name);
                 $.ajax({
                     type: "POST",
                     url: createRouteUrl,
                     data: {
-                        stops: stops
+                        stops: stops,
+                        name: name
             },
                     success: function () {
                         
