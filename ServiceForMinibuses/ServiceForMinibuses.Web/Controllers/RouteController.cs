@@ -71,8 +71,8 @@ namespace ServiceForMinibuses.Web.Controllers
                         var findStop = _stopStore.GetStopByName(stop);
                       
                         route.Stops.Add(findStop);
-                        findStop.Routes.Add(route);
-                        _stopStore.UpdateStop(findStop);
+                      //  findStop.Routes.Add(route);
+                       // _stopStore.UpdateStop(findStop);
                     }
                 }
 
