@@ -194,5 +194,5 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-DataManager.Web/Logos
-DataManager.Web/Images
+packages/
+ServiceForMinibuses.v12.suo
