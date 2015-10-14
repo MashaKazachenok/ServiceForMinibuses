@@ -6,32 +6,41 @@
 <h2>Create route</h2>
     <form action="@Url.Action("CreateRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
     @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
-        <div>
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "route-name" })
-            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
+        <div class="pL20">
+            <div class="form-group" style="width: 400px">
+                @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                <div>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "route-name" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div id="example" role="application">
-        <div class="demo-section k-header select-form">
+            <div id="example" role="application" style="width: 383px">
+                <div class="demo-section k-header select-form">
 
-            <label for="optional">Stops</label>
-            <select id="optional" multiple="multiple" data-placeholder="Select stop...">
-                @foreach (var stop in Model.Stops)
-                {
-                    <option>@stop.Name</option>
-                }
-            </select>
+                    <label for="optional">Stops</label>
+                    <select id="optional" multiple="multiple" data-placeholder="Select stop...">
+                        @foreach (var stop in Model.Stops)
+                        {
+                            <option>@stop.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group pT10">
+                <div class="clearfix">
+                    <div class="dsp-in-block" style="width:28%">
+                        <a class="cancel-button" href="@Url.Action("ViewRoutes", "Route")">Cancel</a>
+                    </div>
+                    <div class="w-20 dsp-in-block">
+                        <input id="buttoncreate" data-action="сreate" type="button" value="Create" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="form-group">
-        <div class="">
-            <input id="task" type="button" value="Create" class="btn btn-success" />
-        </div>
-    </div>
 </form>
 
 @section Scripts {
@@ -43,21 +52,17 @@
     <script>
         var createRouteUrl = "@Url.Action("CreateRoute", "Route")";
 
+        $(document).on('click', '[data-action="сreate"]', addRoute);
+
         $(document).ready(function() {
             // create MultiSelect from select HTML element
             var optional = $("#optional").kendoMultiSelect({
                 autoClose: false
             }).data("kendoMultiSelect");
-
-         //   $('#task').on('click', addRoute);
-        });
-
-        $("#task").click(function () {
-            addRoute();
         });
         
         function addRoute() {
-         
+            console.log("addRoute");
             var stops = $('#optional').val();
             var name = $('#route-name').val();
             console.log(stops);

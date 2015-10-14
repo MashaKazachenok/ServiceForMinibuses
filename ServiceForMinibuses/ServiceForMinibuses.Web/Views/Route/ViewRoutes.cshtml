@@ -3,23 +3,25 @@
     ViewBag.Title = "View routes";
 }
 
-<h2>All routes</h2>
-<div class="row">
-    <a class="text-size" href="@Url.Action("CreateRoute", "Route")"><span class="glyphicon glyphicon-plus"></span>Add route </a>
+<div class="clearfix">
+    <div class="home-style-text pL20 w-20 dsp-in-block"> All Routes</div>
+    <div class="row pL20 pT10 w-40 dsp-in-block">
+        <a href="@Url.Action("CreateRoute", "Route")"><span class="glyphicon glyphicon-plus"></span> Add route </a>
+    </div>
 </div>
 
-<div class="table table-striped">
+<div class="table table-striped pT10">
     <table class="table table-bordered">
 
         <tr>
-            <th>Name</th>
+            <th id="route-name">Name</th>
             <th>Stops</th>
             <th>Delete</th>
 
         </tr>
         @foreach (var route in Model.Routes)
         {
-            <tr>
+            <tr data-action="data-edit-line" id="@route.Id">
                 <td>
                     @route.Name
                 </td>
@@ -27,33 +29,139 @@
                     @foreach (var stop in route.Stops)
                     {
                         @stop.Name
+                        <br />
                     }
                 </td>
                 <td>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true" data-toggle="modal" data-target="#@route.Id"></span>
                 </td>
             </tr>
-    <div class="modal fade" id="@route.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Delete route</h4>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="@Url.Action("DeleteRoute", "Route", new { routeId = route.Id })">Delete</a>
+            <div class="modal fade" id="@route.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Delete route</h4>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <a href="@Url.Action("DeleteRoute", "Route", new {routeId = route.Id})">Delete</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
         }
     </table>
 </div>
 
+<div>
+    <div class="clearfix">
+        <div class="home-style-text pL20 w-20 dsp-in-block"> All Stops</div>
+        <div class="row pL20 pT10 w-40 dsp-in-block">
+            <a href="@Url.Action("CreateStop", "Stop")"><span class="glyphicon glyphicon-plus"></span> Add stop </a>
+        </div>
+    </div>
+
+    <div class="pL20">
+
+        <div id="stop">
+            @for (var item = 0; item < Model.AllStops.Count; item++)
+            {
+                var count = item + 1;
+                <span>@count</span>
+                <span contenteditable="true" data-id="@Model.AllStops[item].Id">@Model.AllStops[item].Name  </span>
+                <span class="glyphicon glyphicon-floppy-disk hidden-save-button" data-action="save" data-id="@Model.AllStops[item].Id"></span>
+                <br />
+            }
+        </div>
+    </div>
+</div>
+
+<div id="dialog-line">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel1">Edit</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-                   
+@section Scripts {
+    <script src="/kendoui/js/jquery.min.js"></script>
+
+    <script>
+
+        var editRouteUrl = '@Url.Action("EditRoute", "Route")';
+        var editStopUrl = '@Url.Action("EditStop", "Stop")';
+
+        $(document).on('click', '[data-action="data-edit-line"]', editRouteDialog);
+        $('#stop').on('click', '[data-action="save"]', saveStop);
+        $('#stop').on('input', '[contenteditable="true"]', inputStop);
+
+        function editRouteDialog(e) {
+
+            var routeId = $(e.target).parent().attr('id');
+            console.log(routeId);
+
+            $.ajax({
+                type: "GET",
+                url: editRouteUrl,
+                data: {
+                    routeId: routeId
+                },
+                success: function (data) {
+
+                    $('#dialog-line .modal-body').html(data);
+
+                    $('#dialog-line .modal').modal();
+                }
+            });
+        }
+
+        function inputStop(e) {
+
+            var id = $(e.target).data('id');
+            console.log($(e.target).data('id'));
+
+            var saveButton = $('[data-action="save"][data-id="' + id + '"]');
+
+            saveButton.removeClass("hidden-save-button");
+            saveButton.addClass("save-button");
+        }
+
+
+        function saveStop(e) {
+
+            var id = $(e.target).data('id');
+            var text = $('span[data-id="' + id + '"]').text();
+
+            var data = {
+                id: id,
+                stopName: text
+            };
+
+            console.log(data);
+
+            $.ajax({
+                type: "POST",
+                url: editStopUrl,
+                data: data,
+                success: function () {
+
+                }
+            });
+        }
+
+
+    </script>
+}                 

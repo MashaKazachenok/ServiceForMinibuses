@@ -64,27 +64,17 @@ namespace ServiceForMinibuses.Web.Controllers
             return View("ViewStops", model);
         }
         //
-        // GET: /Stop/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
         // POST: /Stop/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditStop(int id, string stopName)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+           
+                var stop = _stopStore.GetStopById(id);
+                stop.Name = stopName;
+                _stopStore.UpdateStop(stop);
+   
+                return RedirectToAction("ViewRoutes", "Route");
+         
         }
 
         //

@@ -1,17 +1,45 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div class="home-style-text" id="rewiew-question">
+    <div>Do you want to leave feedback?</div>
+
+    <div class="clearfix">
+        <div class="column w-10">
+            <input type="radio" name="optionsRadios" id="feedbackYes" value="yes">
+            <span>Yes</span>
+        </div>
+        <div class="column w-10">
+            <input class="pT10" type="radio" name="optionsRadios" id="feedbackNo" value="no">
+            <span>No</span>
+        </div>
+    </div>
+</div>
+
+<div id="review-textbox" class="visible-no pT10"><input type="text" placeholder="Enter your review">
+</div>
+
+@section Scripts {
+    <script src="/kendoui/js/jquery.min.js"></script>
+    <script src="/kendoui/js/kendo.all.min.js"></script>
+
+    <script>
+        var containerSelector = ('#rewiew-question');
+        var container = $(containerSelector);
+        container.on("change", '[type="radio"]', viewField);
+
+        function viewField() {
+
+            var checkedRadioButton = $(containerSelector + ' [type="radio"]:checked');
+
+            if (checkedRadioButton[0].id == 'feedbackYes') {
+
+                    $('#rewiew-question').toggleClass("visible-no");
+                    $('#review-textbox').toggleClass("visible-no");
+                }
+        }
+
+    </script>
+}

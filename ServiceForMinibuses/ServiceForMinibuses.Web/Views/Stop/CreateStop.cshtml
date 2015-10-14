@@ -6,41 +6,58 @@
 <h2>Create stop</h2>
 <form action="@Url.Action("CreateStop", "Stop")" enctype="multipart/form-data" method="POST" class="form-horizontal">
     @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
-        <div>
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    <div class="pL20">
+        <div class="form-group w-40">
+            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+            <div>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.XCoord, new { @class = "control-label" })
-        <div class="">
-            @Html.EditorFor(model => model.XCoord, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.XCoord, "", new { @class = "text-danger" })
+
+        <div class="form-group w-40">
+            @Html.LabelFor(model => model.XCoord, new { @class = "control-label" })
+            <div class="">
+                @Html.EditorFor(model => model.XCoord, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.XCoord, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.YCoord, new { @class = "control-label" })
-        <div class="">
-            @Html.EditorFor(model => model.YCoord, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.YCoord, "", new { @class = "text-danger" })
+
+        <div class="form-group w-40">
+            @Html.LabelFor(model => model.YCoord, new { @class = "control-label" })
+            <div class="">
+                @Html.EditorFor(model => model.YCoord, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.YCoord, "", new { @class = "text-danger" })
+            </div>
         </div>
+
     </div>
-    <div class="form-group">
-        <div class="buttonsubmit">
-            <input type="submit" value="Create" class="btn btn-success" />
+
+    <div class="clearfix pT10">
+        <div class="dsp-in-block" style="width: 33%">
+            <a class="cancel-button" href="@Url.Action("ViewRoutes", "Route")">Cancel</a>
+        </div>
+        <div class="w-20 dsp-in-block">
+            <div class="buttonsubmit">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
         </div>
     </div>
 </form>
 
-    @section Scripts {
-        <script src="/kendoui/js/jquery.min.js"></script>
-        <script src="/kendoui/js/kendo.all.min.js"></script>
+@section Scripts {
+    <script src="/kendoui/js/jquery.min.js"></script>
+    <script src="/kendoui/js/kendo.all.min.js"></script>
 
-    }
+}
 
-    @section styles {
-        <link rel="stylesheet" href="/kendoui/styles/kendo.common.min.css" />
-        <link rel="stylesheet" href="/kendoui/styles/kendo.default.min.css" />
-    }
+@section styles {
+    <link rel="stylesheet" href="/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/kendoui/styles/kendo.default.min.css" />
+}
+
+
+
+
+
+

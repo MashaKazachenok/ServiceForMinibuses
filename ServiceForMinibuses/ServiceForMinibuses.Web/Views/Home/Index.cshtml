@@ -2,23 +2,65 @@
     ViewBag.Title = "Home page";
 }
 
+<div id="startGuestion" class="home-style-text">
+    
+    <div class="pT10">Do you want to create route or stop? </div>
 
+    <div>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="yes">
+        <span>Yes</span>
+    </div>
+    <div>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="no">
+        <span>No</span>
+    </div>
 
-<div class="row">
-    <a class="text-size"  href="@Url.Action("CreateRoute", "Route")"><span class="glyphicon glyphicon-plus"></span>Create route </a>
 </div>
 
-<div class="row">
-    <a class="text-size" href="@Url.Action("CreateStop", "Stop")"><span class="glyphicon glyphicon-plus"></span>Create stop</a>
+<div id="toDo" class="home-style-text visible-no">Do you want to do?</div>
+
+<div class="pL20  visible-no" id="creatButtons">
+    <div class="row pT10">
+        <a href="@Url.Action("CreateRoute", "Route")"><span class="glyphicon glyphicon-plus"></span> Create route </a>
+    </div>
+
+    <div class="row pT10">
+        <a href="@Url.Action("CreateStop", "Stop")"><span class="glyphicon glyphicon-plus"></span> Create stop</a>
+    </div>
 </div>
+
+
 
 
 @section styles {
     <link rel="stylesheet" href="/kendoui/styles/kendo.common.min.css" />
     <link rel="stylesheet" href="/kendoui/styles/kendo.default.min.css" />
-    <style>
-        .text-size{
-            font-size: 20px;
+
+
+}
+
+@section Scripts {
+    <script src="/kendoui/js/jquery.min.js"></script>
+    <script src="/kendoui/js/kendo.all.min.js"></script>
+
+    <script>
+        var containerSelector = ('#startGuestion');
+        var container = $(containerSelector);
+        container.on("change", '[type="radio"]', viewField);
+
+        function viewField() {
+        
+            var checkedRadioButton = $(containerSelector + ' [type="radio"]:checked');
+
+            if (checkedRadioButton[0].id == 'optionsRadios1') {
+
+                    $('#creatButtons').toggleClass("visible-no");
+
+                    $('#startGuestion').toggleClass("visible-no");
+
+                    $('#toDo').toggleClass("visible-no");
+                }
         }
-    </style>
-    }
+
+    </script>
+}

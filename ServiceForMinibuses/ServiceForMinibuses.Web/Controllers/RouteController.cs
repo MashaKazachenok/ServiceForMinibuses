@@ -33,11 +33,14 @@ namespace ServiceForMinibuses.Web.Controllers
         {
            
             var routes = _routeStore.GetRoutes();
-
+            var allStops = _stopStore.GetStops();
             Mapper.CreateMap<Route, CreateRouteViewModel>();
+            Mapper.CreateMap<Stop, CreateStopViewModel>();
+
             var model = new RouteListViewModel
             {
-                Routes = Mapper.Map<List<CreateRouteViewModel>>(routes)
+                Routes = Mapper.Map<List<CreateRouteViewModel>>(routes),
+                AllStops = Mapper.Map<List<CreateStopViewModel>>(allStops)
             };
 
             return View(model);
@@ -59,7 +62,7 @@ namespace ServiceForMinibuses.Web.Controllers
 
         // POST: Route/Create
         [HttpPost]
-        public ActionResult CreateRoute(CreateRouteViewModel model, List<string> stops, string name)
+        public ActionResult CreateRoute( List<string> stops, string name)
         {
                 var route = new Route();
                 route.Name = name;
@@ -78,36 +81,28 @@ namespace ServiceForMinibuses.Web.Controllers
 
                 _routeStore.AddRoute(route);
                 
-                return RedirectToAction("ViewRoutes", "Route");
+                return RedirectToAction("Index", "Home");
         } 
 
-        // GET: Route/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditRoute(int routeId)
         {
-            return View();
+            var route = _routeStore.GetRouteById(routeId);
+            var model = new CreateRouteViewModel();
+            model.Name = route.Name;
+
+            return PartialView("EditRoute", model);
         }
 
-        // POST: Route/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditRoute(CreateRouteViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+       
+           // _routeStore.AddRoute(route);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            return RedirectToAction("ViewRoutes", "Route");
+        } 
 
         // POST: Route/Delete/5
-     
-      
-
-
         public ActionResult DeleteRoute(int routeId)
         {
             _routeStore.RemoveRoute(routeId);

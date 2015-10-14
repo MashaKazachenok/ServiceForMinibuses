@@ -1,0 +1,24 @@
+﻿@model ServiceForMinibuses.Web.Models.CreateRouteViewModel
+@{
+    ViewBag.Title = "EditRoute";
+}
+
+<h2>Edit route</h2>
+<form action="@Url.Action("EditRoute", "Route")" enctype="multipart/form-data" method="POST" class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <div class="pL20">
+        <div class="form-group" style="width: 400px">
+            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+            <div>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "route-name" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group pT10">
+            <div>
+                <input type ="submit" type="button" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>

@@ -42,7 +42,8 @@ namespace ServiceForMinibuses.Manager.EntityFramework
 
         public void UpdateStop(Stop findStop)
         {
-            Stop stop = GetStopByName(findStop.Name);
+            Stop stop = GetStopById(findStop.Id);
+            stop.Name = findStop.Name;
 
             if (stop != null)
             {
